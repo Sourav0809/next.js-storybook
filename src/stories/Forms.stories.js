@@ -2,7 +2,8 @@ import Form from "../components/Forms/Form"
 
 export default {
     name: "Forms",
-    component: Form
+    component: Form,
+    subcomponents: { LoginScreen: Form },
 }
 
 const Template = args => <Form {...args} />

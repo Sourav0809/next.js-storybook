@@ -42,7 +42,8 @@ const Form = ({ input1Label, input2Label, input3Label, }) => {
         },
         rangeBox: {
             backgroundColor: theme.palette.grey[300],
-            padding: "10px"
+            padding: "15px",
+            fontWeight: "600"
         }
     };
 
@@ -63,11 +64,13 @@ const Form = ({ input1Label, input2Label, input3Label, }) => {
                 <TextField
                     id="filled-basic-1"
                     label={input1Label}
+                    variant='filled'
                     sx={style.inputBox}
                 />
                 <TextField
                     id="filled-basic-2"
                     label={input2Label}
+                    variant='filled'
                     sx={style.inputBox}
                 />
                 <Select
