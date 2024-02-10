@@ -1,9 +1,9 @@
 import Form from "../components/Forms/Form"
 
 export default {
-    name: "Forms",
+    title: "Forms",
     component: Form,
-    subcomponents: { LoginScreen: Form },
+    tags: ['autodocs'],
 }
 
 const Template = args => <Form {...args} />
@@ -15,3 +15,4 @@ LoginScreen.args = {
     input2Label: "Company Name",
     input3Label: "Select Industry",
 }
+

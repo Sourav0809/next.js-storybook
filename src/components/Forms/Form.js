@@ -4,6 +4,9 @@ import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 import { Button, MenuItem, Select, Typography, useTheme } from '@mui/material';
 
+/**
+ * Form components 
+ */
 const Form = ({ input1Label, input2Label, input3Label, }) => {
     const theme = useTheme();
 

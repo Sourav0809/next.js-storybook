@@ -4,11 +4,10 @@ const config = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     '@storybook/addon-actions',
     '@storybook/addon-docs',
-    '@storybook/addon-controls'
+    '@storybook/addon-controls',
   ],
   framework: {
     name: "@storybook/nextjs",
