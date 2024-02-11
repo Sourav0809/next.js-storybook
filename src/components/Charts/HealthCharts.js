@@ -19,7 +19,8 @@ const HealthCharts = () => {
         mainContainer: {
             width: '1076px',
             backgroundColor: 'white',
-            padding: '15px'
+            padding: '15px',
+            borderRadius: '20px'
 
         },
         chartContainer: {
@@ -107,7 +108,7 @@ const HealthCharts = () => {
                             {data.labels.map((label, index) => (
                                 <Box key={index} style={{ marginRight: '10px', display: 'inline-block' }}>
                                     <Box sx={{ display: "flex", justifyContent: 'center', alignItems: "center", gap: "5px", paddingX: '5px' }}>
-                                        <div style={{ height: "15px", width: "15px", borderRadius: "50%", backgroundColor: `${data.datasets[0].backgroundColor[index]}` }}></div>
+                                        <Box sx={{ height: "15px", width: "15px", borderRadius: "50%", backgroundColor: `${data.datasets[0].backgroundColor[index]}` }} />
                                         <Typography variant='h7'>
                                             {label}
                                         </Typography>
