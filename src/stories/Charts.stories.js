@@ -10,9 +10,9 @@ export default {
 
 const Template = args => <HealthCharts {...args} />
 
-export const healthGraph = Template.bind({})
+export const healthCharts = Template.bind({})
 
-healthGraph.args = {
+healthCharts.args = {
     data: ['name', 'price', 'data']
 }
 
