@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto';
 import { Box, Button, Typography } from '@mui/material';
 import { BiSolidError } from "react-icons/bi";
 import { GiCctvCamera } from "react-icons/gi";
-
+import { MdInfo } from "react-icons/md";
 const HealthCharts = () => {
     const chartContainerRef = useRef(null);
 
@@ -98,16 +98,25 @@ const HealthCharts = () => {
                                     6 Cameras were experiencing downtime in Last 30 days
                                 </Typography>
                             </Box>
-                            <Button variant="h7" sx={{ backgroundColor: 'white', paddingX: '10px', paddingY: '10px' }}>
+                            <Button variant="h7" sx={{ backgroundColor: 'white', paddingX: '10px', paddingY: '10px', fontWeight: 'bold' }}>
                                 View Cameras
                             </Button>
                         </Box>
 
                         <Typography sx={{ marginTop: '20px' }}>
                             {data.labels.map((label, index) => (
-                                <Typography key={index} style={{ marginRight: '10px', display: 'inline-block' }}>
-                                    <span>{label}</span>
-                                </Typography>
+                                <Box key={index} style={{ marginRight: '10px', display: 'inline-block' }}>
+                                    <Box sx={{ display: "flex", justifyContent: 'center', alignItems: "center", gap: "5px", paddingX: '5px' }}>
+                                        <div style={{ height: "15px", width: "15px", borderRadius: "50%", backgroundColor: `${data.datasets[0].backgroundColor[index]}` }}></div>
+                                        <Typography variant='h7'>
+                                            {label}
+                                        </Typography>
+                                        <Typography variant='h7'>
+                                            ({data.datasets[0].data[index]})
+                                        </Typography>
+                                        <MdInfo style={{ color: '#8F90A6', fontSize: "20px" }} />
+                                    </Box>
+                                </Box>
                             ))}
                         </Typography>
                     </Box>
