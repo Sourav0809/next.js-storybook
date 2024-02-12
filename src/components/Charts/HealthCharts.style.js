@@ -1,0 +1,93 @@
+
+export const styles = {
+    screen: {
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#E0E0E0',
+    },
+    mainContainer: {
+        width: '1076px',
+        backgroundColor: 'white',
+        padding: '15px',
+        borderRadius: '20px',
+    },
+    chartContainer: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '210px',
+        height: '210px',
+    },
+    textContainer: {
+        width: '814px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        gap: '16px',
+    },
+    chartText: {
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '20px',
+    },
+    cameraIconBox: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        backgroundColor: '#F1F1F1',
+        fontWeight: 600,
+        paddingY: '20px',
+        paddingX: '10px',
+    },
+    cameraIcon: {
+        fontSize: '25px',
+        color: '#0043C4',
+    },
+    downtimeBox: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '10px',
+        backgroundColor: '#FFBFCC',
+        fontWeight: 600,
+    },
+    errorIconBox: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+    },
+    errorIcon: {
+        color: '#ED1C46',
+        fontSize: '25px',
+    },
+    infoButton: {
+        backgroundColor: 'white',
+        paddingX: '10px',
+        paddingY: '10px',
+        fontWeight: 'bold',
+    },
+    labelBox: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5px',
+        paddingX: '5px',
+    },
+    labelCircle: {
+        height: '15px',
+        width: '15px',
+        borderRadius: '50%',
+    },
+    infoIcon: {
+        color: '#8F90A6',
+        fontSize: '20px',
+    },
+};

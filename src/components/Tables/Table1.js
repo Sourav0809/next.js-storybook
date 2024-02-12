@@ -7,46 +7,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import { Box, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { styles } from './Table1.style';
 
 const Table1 = ({ tableHeadings, tableData }) => {
-
-    const styles = {
-        screen: {
-            height: "100vh",
-            width: '100%',
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#E0E0E0"
-        },
-        parentContainer: {
-            width: "80rem"
-        },
-        textStyles: {
-            padding: '5px',
-            fontWeight: 'bold'
-        },
-        cellStyles: {
-            paddingTop: '20px',
-            paddingBottom: '20px'
-        }
-
-    };
 
     return (
         <Box sx={styles.screen}>
             <Box sx={styles.parentContainer}>
-                <TableContainer component={Paper} sx={{ padding: '20px', borderRadius: '10px' }}>
+                <TableContainer component={Paper} sx={styles.tableContainer}>
                     <Table aria-label="simple table" size="medium" >
-                        <TableHead sx={{
-                            backgroundColor: "#F3F3F3",
-                            position: "sticky",
-                            top: 0,
-                            zIndex: 10,
-                            borderRadius: '20px'
-                        }}>
+                        <TableHead sx={styles.tableHead}>
                             <TableRow >
                                 {tableHeadings.map((heading, index) => (
                                     <TableCell key={index} align="center">
@@ -87,8 +59,8 @@ const Table1 = ({ tableHeadings, tableData }) => {
                                     </TableCell>
                                     <TableCell align='center' sx={styles.cellStyles} >
                                         <Typography variant="body-2" sx={{ ...styles.textStyles, display: "flex", justifyContent: "center", alignItems: 'center', gap: '10px' }}>
-                                            <BorderColorOutlinedIcon />
-                                            <DeleteIcon color='warning' />
+                                            <FaEdit style={{ fontSize: "20px" }} />
+                                            <RiDeleteBin6Line style={{ fontSize: "20px", color: '#ED1C24' }} />
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -101,10 +73,9 @@ const Table1 = ({ tableHeadings, tableData }) => {
     );
 };
 
-export default Table1;
-
 Table1.propTypes = {
     tableData: PropTypes.array,
     tableHeadings: PropTypes.array,
-
 };
+
+export default Table1;

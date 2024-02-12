@@ -1,12 +1,12 @@
-import Form from "../components/Forms/Form"
+import LoginForm from "../components/Forms/LoginForm"
 
 export default {
     title: "Forms",
-    component: Form,
+    component: LoginForm,
     tags: ['autodocs'],
 }
 
-const Template = args => <Form {...args} />
+const Template = args => <LoginForm {...args} />
 
 export const LoginScreen = Template.bind({})
 
