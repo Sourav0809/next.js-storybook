@@ -10,6 +10,7 @@ export const styles = {
     },
     parentContainer: {
         padding: '3rem',
+        borderRadius: '10px',
         width: '30rem',
         backgroundColor: 'white',
         display: 'flex',
@@ -33,7 +34,6 @@ export const styles = {
         gap: '10px',
     },
     rangeBox: {
-        backgroundColor: '#EFEFEF',
         padding: '15px',
         fontWeight: 600,
     },

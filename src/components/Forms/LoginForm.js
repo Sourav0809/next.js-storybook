@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 import { Button, MenuItem, Select, Typography } from '@mui/material';
 import { styles } from './LoginForm.style';
 
-const LoginForm = ({ input1Label, input2Label, input3Label }) => {
-    const locationRanges = ['1-10', '10-50', '50-100', '150+'];
+const LoginForm = ({ input1Label, input2Label, input3Label, locationRanges }) => {
+    const [selectedRange, setSelectedRange] = useState(null);
+
+    const handleRangeClick = (index) => {
+        setSelectedRange(index);
+    };
 
     return (
         <Box sx={styles.screen}>
@@ -38,13 +42,22 @@ const LoginForm = ({ input1Label, input2Label, input3Label }) => {
                 </Select>
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                    <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 400 }}>
+                    <Typography variant="h6" sx={{ fontSize: '1.2rem', fontWeight: 500 }}>
                         Select Number Of Locations
                     </Typography>
 
                     <Box sx={styles.rangeContainer}>
                         {locationRanges.map((range, index) => (
-                            <Box key={index} sx={styles.rangeBox}>
+                            <Box
+                                key={index}
+                                sx={{
+                                    ...styles.rangeBox,
+                                    backgroundColor: selectedRange === index ? 'black' : '#EFEFEF',
+                                    color: selectedRange === index ? 'white' : 'inherit',
+                                    cursor: 'pointer',
+                                }}
+                                onClick={() => handleRangeClick(index)}
+                            >
                                 {range}
                             </Box>
                         ))}
@@ -62,6 +75,7 @@ LoginForm.propTypes = {
     input1Label: PropTypes.string,
     input2Label: PropTypes.string,
     input3Label: PropTypes.string,
+    locationRanges: PropTypes.array,
 };
 
 export default LoginForm;
