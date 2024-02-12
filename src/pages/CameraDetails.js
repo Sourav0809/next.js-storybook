@@ -6,7 +6,7 @@ import { styles } from "./CameraDetails.style";
 import PropTypes from 'prop-types'
 
 
-const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs }) => {
+const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs, cameraName }) => {
 
     return (
         <Box sx={styles.screen}>
@@ -23,7 +23,7 @@ const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs }) => {
                                 </span>
                                 / Camera / Camera Details
                             </Typography>
-                            <Typography sx={styles.subTitle}>Bank Entrance-front-view Camera1</Typography>
+                            <Typography sx={styles.subTitle}>{cameraName}</Typography>
                             <Typography varient='h7' sx={styles.mainTitle}>View and manage camera details, recordings, and connection details</Typography>
                         </Box>
                     </Box>
@@ -56,7 +56,9 @@ const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs }) => {
                             <Box sx={styles.detailsContainer}>
                                 <Box sx={styles.detailsHeader}>
                                     <Typography variant="h5" sx={styles.cameraDetailsTitle}>Camera Details</Typography>
-                                    <span style={styles.activeStatus}>Active</span>
+                                    <span style={cameraDetails.status == "Active" ? styles.activeStatus : styles.deactiveStatus}>
+                                        {cameraDetails.status}
+                                    </span>
                                 </Box>
                                 <Box sx={styles.detailsContent}>
                                     <Box sx={styles.detailItem}>
@@ -157,7 +159,8 @@ const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs }) => {
 CameraDetails.PropTypes = {
     recentRecordings: PropTypes.array,
     cameraDetails: PropTypes.object,
-    healthlogs: PropTypes.array
+    healthlogs: PropTypes.array,
+    cameraName: PropTypes.string
 }
 
 export default CameraDetails

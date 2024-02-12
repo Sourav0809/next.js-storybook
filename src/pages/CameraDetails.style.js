@@ -134,6 +134,12 @@ export const styles = {
         color: "white",
         padding: '5px',
     },
+    deactiveStatus: {
+        backgroundColor: 'red',
+        borderRadius: '4px',
+        color: "white",
+        padding: '5px',
+    },
     detailsContent: {
         marginTop: "20px",
         display: 'flex',
