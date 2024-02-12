@@ -5,30 +5,13 @@ import { BiSolidError } from 'react-icons/bi';
 import { GiCctvCamera } from 'react-icons/gi';
 import { MdInfo } from 'react-icons/md';
 import { styles } from './HealthCharts.style';
+import PropTypes from 'prop-types';
 
-const HealthCharts = () => {
+const HealthCharts = ({ data, options }) => {
+
     const chartContainerRef = useRef(null);
-    // Dummy data
-    const data = {
-        labels: ['Super Healthy', 'Healthy', 'Warning', 'Danger'],
-        datasets: [
-            {
-                data: [56, 35, 27, 6],
-                backgroundColor: ['#19A01E', '#00DB4A', '#FB8B34', '#ED1C24'],
-                borderColor: 'white',
-                borderWidth: 0,
-                cutout: '80%',
-            },
-        ],
-    };
+    const totalCamera = data.datasets[0].data.reduce((prev, curr) => prev += curr)
 
-    const options = {
-        plugins: {
-            legend: {
-                display: false,
-            },
-        },
-    };
 
     useEffect(() => {
         const ctx = chartContainerRef.current?.getContext('2d');
@@ -50,7 +33,7 @@ const HealthCharts = () => {
                 <Box sx={{ display: 'flex', gap: '5px' }}>
                     <Box sx={styles.chartContainer}>
                         <Typography variant="h7" sx={styles.chartText}>
-                            <span style={{ fontSize: '30px', fontWeight: 'bold' }}>124</span>
+                            <span style={{ fontSize: '30px', fontWeight: 'bold' }}>{totalCamera}</span>
                             <span>Cameras</span>
                         </Typography>
                         <canvas ref={chartContainerRef} width="100%" height="100%"></canvas>
@@ -60,7 +43,7 @@ const HealthCharts = () => {
                         <Box sx={styles.cameraIconBox}>
                             <GiCctvCamera style={styles.cameraIcon} />
                             <Typography variant="h7">
-                                Totally 124 Cameras are in 9 NVRs and installed in 12 Locations
+                                Totally {totalCamera} Cameras are in {data.datasets[0].NVR} NVRs and installed in {data.datasets[0].locations} Locations
                             </Typography>
                         </Box>
 
@@ -68,7 +51,7 @@ const HealthCharts = () => {
                             <Box sx={styles.errorIconBox}>
                                 <BiSolidError style={styles.errorIcon} />
                                 <Typography variant="h7">
-                                    6 Cameras were experiencing downtime in Last 30 days
+                                    {data.datasets[0].downtimeCameras} Cameras were experiencing downtime in Last 30 days
                                 </Typography>
                             </Box>
                             <Button variant="h7" sx={styles.infoButton}>
@@ -99,5 +82,11 @@ const HealthCharts = () => {
         </Box>
     );
 };
+
+HealthCharts.PropTypes = {
+    data: PropTypes.object,
+    options: PropTypes.object
+}
+
 
 export default HealthCharts;
