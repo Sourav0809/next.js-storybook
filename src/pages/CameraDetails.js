@@ -3,8 +3,10 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import { ImVideoCamera } from "react-icons/im";
 import { VscDebugRestart } from "react-icons/vsc";
 import { styles } from "./CameraDetails.style";
-const CameraDetails = () => {
+import PropTypes from 'prop-types'
 
+
+const CameraDetails = ({ recentRecordings, cameraDetails, healthLogs }) => {
 
     return (
         <Box sx={styles.screen}>
@@ -54,32 +56,36 @@ const CameraDetails = () => {
                             <Box sx={styles.detailsContainer}>
                                 <Box sx={styles.detailsHeader}>
                                     <Typography variant="h5" sx={styles.cameraDetailsTitle}>Camera Details</Typography>
-                                    <span sx={styles.activeStatus}>Active</span>
+                                    <span style={styles.activeStatus}>Active</span>
                                 </Box>
                                 <Box sx={styles.detailsContent}>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>Location :</Typography>
-                                        <Typography sx={styles.detailValue}>Coimbatore</Typography>
+                                        <Typography sx={styles.detailValue}>
+                                            {cameraDetails.location}
+                                        </Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>City :</Typography>
-                                        <Typography sx={styles.detailValue}>Coimbatore</Typography>
+                                        <Typography sx={styles.detailValue}>
+                                            {cameraDetails.city}
+                                        </Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>Timezone :</Typography>
-                                        <Typography sx={styles.detailValue}>Delhi-India</Typography>
+                                        <Typography sx={styles.detailValue}>{cameraDetails.timezone}</Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>Date Added :</Typography>
-                                        <Typography sx={styles.detailValue}>Aug 03, 2023 12:01:42 PM</Typography>
+                                        <Typography sx={styles.detailValue}>{cameraDetails.dateAdded}</Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>Last Update :</Typography>
-                                        <Typography sx={styles.detailValue}>Aug 03, 2023 12:01:42 PM</Typography>
+                                        <Typography sx={styles.detailValue}>{cameraDetails.lastUpdate}</Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>Manufacture details:</Typography>
-                                        <Typography sx={styles.detailValue}>ADT</Typography>
+                                        <Typography sx={styles.detailValue}>{cameraDetails.manufacture}</Typography>
                                     </Box>
                                     <Box sx={styles.detailItem}>
                                         <Typography sx={styles.detailLabel}>RTSP/HLS URL :</Typography>
@@ -111,11 +117,9 @@ const CameraDetails = () => {
                         </Box>
                         <Box sx={styles.healthLogsBox}>
                             <Typography sx={styles.healthLogsTitle}>Health Logs</Typography>
-                            <Typography sx={styles.healthLogsTime}>Today, 04:37 pm: Activated</Typography>
-                            <Typography sx={styles.healthLogsTime}>23 Aug, 02:22 pm: Deactivated</Typography>
-                            <Typography sx={styles.healthLogsTime}>21 Aug, 05:12 am: Activated</Typography>
-                            <Typography sx={styles.healthLogsTime}>20 Aug, 02:12 am: Deactivated</Typography>
-                            <Typography sx={styles.healthLogsTime}>19 Aug, 02:12 am: Deactivated</Typography>
+                            {healthLogs.map((log, index) => {
+                                return <Typography sx={styles.healthLogsTime} key={index}>{log}</Typography>
+                            })}
                         </Box>
                     </Box>
                     <Box sx={styles.recentRecordingsBox}>
@@ -123,51 +127,22 @@ const CameraDetails = () => {
                             <Typography sx={styles.recentRecordingsTitle}>Recent Recordings</Typography>
                             <Typography sx={styles.viewAllLink}>View All</Typography>
                         </Box>
+
                         <Box sx={styles.recentRecordingsContainer}>
-                            <Box sx={styles.recordingItemBox}>
-                                <Box sx={styles.recordingItemImage}>
-                                    <img
-                                        src="https://s3-alpha-sig.figma.com/img/858f/7625/7e1bdb331fa205fba9173b96b7ca0c1b?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GC6da2z0I3NOKp3BVIhNJxvTbJeH3ogwPFxbwQBHHNUATkDZIf9RIjsp34TAu1ruMxWE1CFhns6CY5V0lDA1QQieOlMjIpCPXkDSZs3wuTXi1FALhBMNOZQR5g6HBci0O9eXBS2syx2Amt~iS8Pqq2LUNVjeZMWEe3-A-AOLTtvxB4HLc8Er40hdmtrUBowJhpfrThV7wmeGGsKpPHklzKobR8azB2igO9wgbVal1yML1l~qOgUMQna1Z4kvBHxQHfsgVrLArz6crWWFlwwCo0boBkErphulZoc5AaF3eJI0UAOex~Zn3Bcs6CYwuxLAuefQIsgJHo9aKnN5UVmO5w__"
-                                        style={styles.recordingItemImage}
-                                        alt="Recording Image"
-                                    />
+                            {recentRecordings.map((recording, index) => {
+                                console.log(recording)
+                                return <Box sx={styles.recordingItemBox} key={index}>
+                                    <Box sx={styles.recordingItemImage}>
+                                        <img
+                                            src={recording.imagePath}
+                                            style={styles.recordingItemImage}
+                                            alt="Recording Image"
+                                        />
+                                    </Box>
+                                    <Typography sx={styles.recordingItemTitle}>{recording.name}</Typography>
+                                    <Typography sx={styles.recordingItemTime}>{recording.time}</Typography>
                                 </Box>
-                                <Typography sx={styles.recordingItemTitle}>Recent Recordings</Typography>
-                                <Typography sx={styles.recordingItemTime}>Today, 04:42 pm</Typography>
-                            </Box>
-                            <Box sx={styles.recordingItemBox}>
-                                <Box sx={styles.recordingItemImage}>
-                                    <img
-                                        src="https://s3-alpha-sig.figma.com/img/858f/7625/7e1bdb331fa205fba9173b96b7ca0c1b?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GC6da2z0I3NOKp3BVIhNJxvTbJeH3ogwPFxbwQBHHNUATkDZIf9RIjsp34TAu1ruMxWE1CFhns6CY5V0lDA1QQieOlMjIpCPXkDSZs3wuTXi1FALhBMNOZQR5g6HBci0O9eXBS2syx2Amt~iS8Pqq2LUNVjeZMWEe3-A-AOLTtvxB4HLc8Er40hdmtrUBowJhpfrThV7wmeGGsKpPHklzKobR8azB2igO9wgbVal1yML1l~qOgUMQna1Z4kvBHxQHfsgVrLArz6crWWFlwwCo0boBkErphulZoc5AaF3eJI0UAOex~Zn3Bcs6CYwuxLAuefQIsgJHo9aKnN5UVmO5w__"
-                                        style={styles.recordingItemImage}
-                                        alt="Recording Image"
-                                    />
-                                </Box>
-                                <Typography sx={styles.recordingItemTitle}>Recent Recordings</Typography>
-                                <Typography sx={styles.recordingItemTime}>Today, 04:42 pm</Typography>
-                            </Box>
-                            <Box sx={styles.recordingItemBox}>
-                                <Box sx={styles.recordingItemImage}>
-                                    <img
-                                        src="https://s3-alpha-sig.figma.com/img/858f/7625/7e1bdb331fa205fba9173b96b7ca0c1b?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GC6da2z0I3NOKp3BVIhNJxvTbJeH3ogwPFxbwQBHHNUATkDZIf9RIjsp34TAu1ruMxWE1CFhns6CY5V0lDA1QQieOlMjIpCPXkDSZs3wuTXi1FALhBMNOZQR5g6HBci0O9eXBS2syx2Amt~iS8Pqq2LUNVjeZMWEe3-A-AOLTtvxB4HLc8Er40hdmtrUBowJhpfrThV7wmeGGsKpPHklzKobR8azB2igO9wgbVal1yML1l~qOgUMQna1Z4kvBHxQHfsgVrLArz6crWWFlwwCo0boBkErphulZoc5AaF3eJI0UAOex~Zn3Bcs6CYwuxLAuefQIsgJHo9aKnN5UVmO5w__"
-                                        style={styles.recordingItemImage}
-                                        alt="Recording Image"
-                                    />
-                                </Box>
-                                <Typography sx={styles.recordingItemTitle}>Recent Recordings</Typography>
-                                <Typography sx={styles.recordingItemTime}>Today, 04:42 pm</Typography>
-                            </Box>
-                            <Box sx={styles.recordingItemBox}>
-                                <Box sx={styles.recordingItemImage}>
-                                    <img
-                                        src="https://s3-alpha-sig.figma.com/img/858f/7625/7e1bdb331fa205fba9173b96b7ca0c1b?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GC6da2z0I3NOKp3BVIhNJxvTbJeH3ogwPFxbwQBHHNUATkDZIf9RIjsp34TAu1ruMxWE1CFhns6CY5V0lDA1QQieOlMjIpCPXkDSZs3wuTXi1FALhBMNOZQR5g6HBci0O9eXBS2syx2Amt~iS8Pqq2LUNVjeZMWEe3-A-AOLTtvxB4HLc8Er40hdmtrUBowJhpfrThV7wmeGGsKpPHklzKobR8azB2igO9wgbVal1yML1l~qOgUMQna1Z4kvBHxQHfsgVrLArz6crWWFlwwCo0boBkErphulZoc5AaF3eJI0UAOex~Zn3Bcs6CYwuxLAuefQIsgJHo9aKnN5UVmO5w__"
-                                        style={styles.recordingItemImage}
-                                        alt="Recording Image"
-                                    />
-                                </Box>
-                                <Typography sx={styles.recordingItemTitle}>Recent Recordings</Typography>
-                                <Typography sx={styles.recordingItemTime}>Today, 04:42 pm</Typography>
-                            </Box>
+                            })}
 
                         </Box>
                     </Box>
@@ -175,6 +150,14 @@ const CameraDetails = () => {
             </Box>
         </Box >
     )
+}
+
+
+
+CameraDetails.PropTypes = {
+    recentRecordings: PropTypes.array,
+    cameraDetails: PropTypes.object,
+    healthlogs: PropTypes.array
 }
 
 export default CameraDetails

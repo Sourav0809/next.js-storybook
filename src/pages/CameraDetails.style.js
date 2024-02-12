@@ -125,7 +125,7 @@ export const styles = {
         alignItems: 'center',
     },
     cameraDetailsTitle: {
-        fontWeight: 500,
+        fontWeight: 600,
         fontSize: '20px',
     },
     activeStatus: {

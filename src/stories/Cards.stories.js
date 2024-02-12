@@ -1,5 +1,5 @@
-import CameraCard from "../components/Cards/CameraCard";
-import ReceipeCard from "../components/Cards/ReceipeCard";
+import CameraCard from "../components/Cards/CameraCard/CameraCard";
+import ReceipeCard from "../components/Cards/ReceipeCard/ReceipeCard";
 
 
 export default {
@@ -12,6 +12,7 @@ const Template1 = args => <ReceipeCard {...args} />
 
 export const cameracard = Template.bind({})
 export const receipecard = Template1.bind({})
+
 
 export const CombinedCards = () => (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
